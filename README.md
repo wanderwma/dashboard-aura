@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Capital — Dashboard Comercial</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0D1B2A;--navy-mid:#152435;--gold:#C9A84C;--white:#FAFAF8;--gray:#8A8A8A;--green:#2ECC8A;--amber:#F4A535;--red:#E05252;--blue:#5B9CF6;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy);color:var(--white);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+  .shell{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 32px 64px;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:36px 0 40px;border-bottom:1px solid rgba(201,168,76,0.2);margin-bottom:48px;}
+  .brand{display:flex;align-items:baseline;gap:14px;}
+  .brand-name{font-family:'DM Serif Display',serif;font-size:26px;color:var(--gold);}
+  .brand-sep{color:rgba(201,168,76,0.3);font-size:20px;}
+  .brand-sub{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);}
+  .header-meta{text-align:right;}
+  .header-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:.08em;}
+  .header-badge{display:inline-block;margin-top:6px;padding:4px 10px;border:1px solid rgba(201,168,76,0.3);border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+  .section-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+  .section-label::before{content:'';display:block;width:3px;height:18px;background:var(--gold);border-radius:2px;flex-shrink:0;}
+  .section-label span{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;}
+  .kpi-grid-2{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px;}
+  .kpi{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:24px 24px 20px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;animation:fadeUp .5s ease both;}
+  .kpi:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
+  .kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--gold));opacity:.7;}
+  .kpi:nth-child(1){animation-delay:.05s}.kpi:nth-child(2){animation-delay:.10s}.kpi:nth-child(3){animation-delay:.15s}.kpi:nth-child(4){animation-delay:.20s}
+  .kpi-value{font-family:'DM Serif Display',serif;font-size:42px;line-height:1;color:var(--white);margin-bottom:8px;}
+  .kpi-value.currency{font-size:26px;}
+  .kpi-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;}
+  .table-block{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+  .table-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .table-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+  .table-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);}
+  table{width:100%;border-collapse:collapse;}
+  thead th{padding:10px 16px;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);text-align:left;background:rgba(0,0,0,0.15);border-bottom:1px solid rgba(255,255,255,0.04);}
+  tbody tr{border-bottom:1px solid rgba(255,255,255,0.03);transition:background .15s;}
+  tbody tr:hover{background:rgba(201,168,76,0.04);}
+  tbody tr:last-child{border-bottom:none;}
+  tbody td{padding:11px 16px;font-size:12px;color:rgba(250,250,248,0.8);}
+  td.name{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--white);}
+  td.mono{font-family:'DM Mono',monospace;font-size:11px;}
+  .badge{display:inline-block;padding:3px 9px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+  .badge-em-cotacao{background:rgba(244,165,53,0.15);color:var(--amber);border:1px solid rgba(244,165,53,0.3);}
+  .badge-fechada{background:rgba(46,204,138,0.15);color:var(--green);border:1px solid rgba(46,204,138,0.3);}
+  .badge-recusada{background:rgba(224,82,82,0.15);color:var(--red);border:1px solid rgba(224,82,82,0.3);}
+  .funil-row{display:grid;grid-template-columns:180px 60px 1fr 130px 60px;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .funil-row:last-child{border-bottom:none;}
+  .funil-row.funil-head{padding:10px 20px;background:rgba(0,0,0,0.15);border-bottom:1px solid rgba(255,255,255,0.06);}
+  .funil-head span{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);}
+  .funil-bar-wrap{background:rgba(255,255,255,0.05);border-radius:2px;height:6px;overflow:hidden;}
+  .funil-bar{height:100%;border-radius:2px;}
+  .funil-vol{font-family:'DM Mono',monospace;font-size:11px;color:rgba(250,250,248,0.7);text-align:right;}
+  .funil-pct{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);text-align:right;}
+  .funil-qty{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);}
+  .fundo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+  .fundo-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:20px 22px;position:relative;overflow:hidden;}
+  .fundo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--fundo-color,var(--gold));}
+  .fundo-name{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--fundo-color,var(--gold));margin-bottom:16px;}
+  .fundo-stat{margin-bottom:8px;}
+  .fundo-stat-label{font-size:9px;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;}
+  .fundo-stat-value{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);}
+  .fundo-stat-value.sm{font-size:14px;font-family:'DM Mono',monospace;}
+  .full-table-wrap{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:48px;overflow-x:auto;}
+  .full-table-wrap table thead th{padding:12px 14px;}
+  .full-table-wrap table tbody td{padding:10px 14px;font-size:11px;}
+  footer{border-top:1px solid rgba(201,168,76,0.15);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+  footer p{font-size:10px;color:var(--gray);letter-spacing:.08em;}
+  footer .gold{color:var(--gold);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .table-block,.fundo-card,.full-table-wrap{animation:fadeUp .5s ease both;}
+  @media(max-width:900px){.kpi-grid,.kpi-grid-2{grid-template-columns:repeat(2,1fr);}.two-col{grid-template-columns:1fr;}.fundo-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand">
+      <span class="brand-name">Aura Capital</span>
+      <span class="brand-sep">·</span>
+      <span class="brand-sub">Dashboard Comercial</span>
+    </div>
+    <div class="header-meta">
+      <div class="header-date" id="today"></div>
+      <div class="header-badge">Atualizado · 11/06/2026</div>
+    </div>
+  </header>
+
+  <div class="section-label"><span>Pipeline de cotações</span></div>
+  <div class="kpi-grid">
+    <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">63</div><div class="kpi-label">Total de cotações</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value" style="color:var(--amber)">57</div><div class="kpi-label">Em andamento</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value" style="color:var(--green)">0</div><div class="kpi-label">Fechadas</div></div>
+    <div class="kpi" style="--accent:var(--red)"><div class="kpi-value" style="color:var(--red)">6</div><div class="kpi-label">Recusadas</div></div>
+  </div>
+  <div class="kpi-grid-2">
+    <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value currency" style="color:var(--blue)">R$ 141,7M</div><div class="kpi-label">Volume em cotação</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 0</div><div class="kpi-label">Volume fechado</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value currency" style="color:var(--amber)">R$ 2,78M</div><div class="kpi-label">Receita potencial</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 0</div><div class="kpi-label">Receita capturada</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="table-block">
+      <div class="table-header"><span class="table-title">Funil por status</span><span class="table-count">63 cotações</span></div>
+      <div class="funil-row funil-head"><span>Status</span><span>Qtd</span><span>Barra</span><span>Vol. Crédito</span><span>%</span></div>
+      <div class="funil-row"><span class="badge badge-em-cotacao">Em cotação</span><span class="funil-qty">57</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:90%;background:var(--amber)"></div></div><span class="funil-vol">R$ 141.702.280</span><span class="funil-pct">90%</span></div>
+      <div class="funil-row"><span class="badge badge-fechada">Fechada</span><span class="funil-qty">0</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:0%;background:var(--green)"></div></div><span class="funil-vol">—</span><span class="funil-pct">0%</span></div>
+      <div class="funil-row"><span class="badge badge-recusada">Recusada</span><span class="funil-qty">6</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:10%;background:var(--red)"></div></div><span class="funil-vol">R$ 26.895.543</span><span class="funil-pct">10%</span></div>
+    </div>
+    <div class="table-block">
+      <div class="table-header"><span class="table-title">Indicadores de performance</span></div>
+      <table><tbody>
+        <tr><td class="name">Taxa de conversão</td><td class="mono" style="text-align:right;color:var(--gray)">0%</td></tr>
+        <tr><td class="name">Spread médio da carteira</td><td class="mono" style="text-align:right;color:var(--gold)">19,6%</td></tr>
+        <tr><td class="name">Ticket médio (ativos)</td><td class="mono" style="text-align:right;color:var(--white)">R$ 2.530.398</td></tr>
+        <tr><td class="name">Cotações — Breno</td><td class="mono" style="text-align:right;color:var(--white)">47</td></tr>
+        <tr><td class="name">Cotações — Marcel</td><td class="mono" style="text-align:right;color:var(--white)">3</td></tr>
+        <tr><td class="name">Cotações — Marcus</td><td class="mono" style="text-align:right;color:var(--white)">13</td></tr>
+        <tr><td class="name">Parceiros ativos</td><td class="mono" style="text-align:right;color:var(--white)">14</td></tr>
+        <tr><td class="name">Fundos consultados</td><td class="mono" style="text-align:right;color:var(--white)">BTG + Celer</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="section-label"><span>Breakdown por fundo</span></div>
+  <div class="fundo-grid">
+    <div class="fundo-card" style="--fundo-color:var(--amber)">
+      <div class="fundo-name">BTG Pactual</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">47</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 158.245.212</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 2.800.517</div></div>
+    </div>
+    <div class="fundo-card" style="--fundo-color:var(--blue)">
+      <div class="fundo-name">Celer</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">16</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 10.352.611</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 82.577</div></div>
+    </div>
+    <div class="fundo-card" style="--fundo-color:var(--gray)">
+      <div class="fundo-name">Outros</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">0</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">—</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">—</div></div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>Registro completo de cotações</span></div>
+  <div class="full-table-wrap">
+    <div class="table-header"><span class="table-title">Todas as cotações</span><span class="table-count">63 registros</span></div>
+    <table>
+      <thead><tr><th>Data</th><th>Parceiro</th><th>Cliente</th><th>Tribunal</th><th>Fundo</th><th>Valor Crédito</th><th>Valor Oferta</th><th>% Rec.</th><th>Receita Aura</th><th>Resp.</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">26/05</td><td class="name">Juliana Fonseca</td><td>Roque Valcir Casset</td><td class="mono">TRF4</td><td>BTG Pactual</td><td class="mono">R$ 495.176</td><td class="mono">R$ 360.493</td><td class="mono">27,2%</td><td class="mono" style="color:var(--gold)">R$ 98.054</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/05</td><td class="name">Juliana Fonseca</td><td>Roque Valcir Casset</td><td class="mono">TRF4</td><td>Celer</td><td class="mono">R$ 497.531</td><td class="mono">R$ 373.066</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Juliana Fonseca</td><td>Jacson Paim de Souza</td><td class="mono">TRF4</td><td>BTG Pactual</td><td class="mono">R$ 48.919</td><td class="mono">R$ 33.435</td><td class="mono">31,7%</td><td class="mono" style="color:var(--gold)">R$ 10.582</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Juliana Fonseca</td><td>Jacson Paim de Souza</td><td class="mono">TRF4</td><td>Celer</td><td class="mono">R$ 49.132</td><td class="mono">R$ 36.841</td><td class="mono">25,0%</td><td class="mono" style="color:var(--gold)">R$ 9.218</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Juliana Fonseca</td><td>Jacson Paim de Souza</td><td class="mono">TRF4</td><td>BTG Pactual</td><td class="mono">R$ 212.218</td><td class="mono">R$ 153.350</td><td class="mono">27,7%</td><td class="mono" style="color:var(--gold)">R$ 42.539</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Juliana Fonseca</td><td>Jacson Paim de Souza</td><td class="mono">TRF4</td><td>Celer</td><td class="mono">R$ 213.228</td><td class="mono">R$ 159.885</td><td class="mono">25,0%</td><td class="mono" style="color:var(--gold)">R$ 40.003</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Giuliano / IBP</td><td>VGBL Empreendimentos</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 2.979.717</td><td class="mono">R$ 1.761.163</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gray)">R$ 17.612</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Giuliano / IBP</td><td>ALG Assessoria</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 894.032</td><td class="mono">R$ 618.675</td><td class="mono">30,8%</td><td class="mono" style="color:var(--gold)">R$ 190.552</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Giuliano / IBP</td><td>Tarcisio Pichitelli</td><td class="mono">TJMG</td><td>BTG Pactual</td><td class="mono">R$ 1.203.704</td><td class="mono">R$ 840.351</td><td class="mono">31,2%</td><td class="mono" style="color:var(--gold)">R$ 262.105</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">26/06</td><td class="name">Giuliano / IBP</td><td>Tarcisio Pichitelli</td><td class="mono">TJMG</td><td>BTG Pactual</td><td class="mono">R$ 95.505</td><td class="mono">R$ 66.377</td><td class="mono">30,5%</td><td class="mono" style="color:var(--gold)">R$ 20.245</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">27/05</td><td class="name">—</td><td>Jose Raimundo Soares</td><td class="mono">TRF5</td><td>BTG Pactual</td><td class="mono">R$ 12.020.675</td><td class="mono">R$ 8.015.511</td><td class="mono">12,7%</td><td class="mono" style="color:var(--gold)">R$ 1.019.392</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">27/05</td><td class="name">Ana / IBP</td><td>Cristian Sottile</td><td class="mono">TJPR</td><td>Celer</td><td class="mono">R$ 233.330</td><td class="mono">R$ 31.130</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">27/05</td><td class="name">Ana / IBP</td><td>Lucimara Aparecida</td><td class="mono">TJPR</td><td>Celer</td><td class="mono">R$ 285.936</td><td class="mono">R$ 38.148</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">27/05</td><td class="name">Ana / IBP</td><td>Adonias dos Santos Costa</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 365.942</td><td class="mono">R$ 268.714</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Ricardo Bandolin</td><td class="mono">TJSP</td><td>Celer</td><td class="mono">R$ 187.298</td><td class="mono">R$ 14.676</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Hospital Pilar do Sul</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 11.994.742</td><td class="mono">R$ 8.570.345</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 85.703</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Luis Antonio S. de Oliveira</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 4.380.461</td><td class="mono">R$ 953.725</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 9.537</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Federação Sindicatos SP</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 22.203.536</td><td class="mono">R$ 8.079.604</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 80.796</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Rogerio Neves</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 565.613</td><td class="mono">R$ 173.000</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 1.730</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Rogerio Neves</td><td class="mono">TJSP</td><td>Celer</td><td class="mono">R$ 570.869</td><td class="mono">R$ 200.000</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 2.000</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Maria Gorett W. Matioli</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 169.409</td><td class="mono">R$ 62.500</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 625</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Maria Gorett W. Matioli</td><td class="mono">TJSP</td><td>Celer</td><td class="mono">R$ 179.098</td><td class="mono">—</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Weliton Teles Advogados</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 264.390</td><td class="mono">R$ 119.704</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 1.197</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Weliton Teles Advogados</td><td class="mono">TJGO</td><td>Celer</td><td class="mono">R$ 179.098</td><td class="mono">R$ 56.854</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 569</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">29/05</td><td class="name">Ana / IBP</td><td>Fahel Construcao Civil</td><td class="mono">TJSP</td><td>Celer</td><td class="mono">R$ 1.176.486</td><td class="mono">R$ 48.450</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 484</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
+        <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Maria Carmanhanes Da Fonseca</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 10.658.610</td><td class="mono">R$ 2.281.711</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 22.817</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Lais Seabra Miranda</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 12.500.295</td><td class="mono">R$ 2.192.849</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 175.428</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Aristea Cordeiro Terra</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 10.572.124</td><td class="mono">R$ 1.861.316</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 148.905</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">01/06</td><td class="name">Jonas Candido</td><td>Márcio Da Silva Galvão</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 111.917</td><td class="mono">R$ 55.769</td><td class="mono">46,0%</td><td class="mono" style="color:var(--gold)">R$ 25.654</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Salvador Caser Netto</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 153.325</td><td class="mono">R$ 33.000</td><td class="mono">2,0%</td><td class="mono" style="color:var(--gold)">R$ 660</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Salvador Caser Netto</td><td class="mono">TJGO</td><td>Celer</td><td class="mono">R$ 176.684</td><td class="mono">R$ 76.712</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 767</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Neuber Figueiredo</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 69.228</td><td class="mono">R$ 15.173</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 152</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>UILIAN LITRAN</td><td class="mono">TJDF</td><td>BTG Pactual</td><td class="mono">R$ 85.150</td><td class="mono">R$ 60.752</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 608</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>UILIAN LITRAN</td><td class="mono">TJDF</td><td>Celer</td><td class="mono">R$ 85.480</td><td class="mono">R$ 64.348</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 643</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Cintia Najla</td><td>GILSANE DE PAULA APOLONIO</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 298.180</td><td class="mono">R$ 106.086</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 8.487</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Valéria/Andressa</td><td>Maria de Jesus da Silva Batista</td><td class="mono">TJ/AM</td><td>Celer</td><td class="mono">R$ 38.592</td><td class="mono">R$ 38.592</td><td class="mono">10,0%</td><td class="mono" style="color:var(--gold)">R$ 3.859</td><td class="mono">Marcel</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">03/06</td><td class="name">Maycon/SC</td><td>IRENE DUZAC FERREIRA</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 5.974.779</td><td class="mono">R$ 307.236</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 24.579</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">08/06</td><td class="name">DF/PRECATÓRIOS</td><td>PRO DOCTOR SISTEMA INTEGRADO</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 15.997.658</td><td class="mono">R$ 3.372.483</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 33.725</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">08/06</td><td class="name">Ana / IBP</td><td>ALICE MARTINS PINTO</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 468.486</td><td class="mono">R$ 97.590</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 976</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">08/06</td><td class="name">Luanna Mannaia/IBP</td><td>CONSTRUTORA CRV LTDA</td><td class="mono">TJTO</td><td>BTG Pactual</td><td class="mono">R$ 6.623.764</td><td class="mono">R$ 956.571</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 9.566</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">09/06</td><td class="name">Luanna Mannaia/IBP</td><td>LUMINE EDITORA LTDA ME</td><td class="mono">TJTO</td><td>BTG Pactual</td><td class="mono">R$ 12.468.820</td><td class="mono">R$ 1.847.088</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 18.471</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">09/06</td><td class="name">Luanna Mannaia/IBP</td><td>SANDRA MARIA STANCZYK</td><td class="mono">TJPR</td><td>BTG Pactual</td><td class="mono">R$ 208.006</td><td class="mono">R$ 24.006</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 240</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">09/06</td><td class="name">Luanna Mannaia/IBP</td><td>MANUEL NUNES TEIXEIRA</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 9.275.902</td><td class="mono">R$ 2.157.534</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 21.575</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">09/06</td><td class="name">Ana Caroline Andrade</td><td>ZENAIDE VIEIRA DE LIMA LUCIANO</td><td class="mono">TJPR</td><td>Celer</td><td class="mono">R$ 139.128</td><td class="mono">R$ 45.425</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 454</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">10/06</td><td class="name">Ana / IBP</td><td>ALICE MARTINS PINTO</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 617.093</td><td class="mono">R$ 127.381</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 1.274</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">10/06</td><td class="name">Ana / IBP</td><td>DÉCIO PEDRO VOLTOLIN</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 3.023.990</td><td class="mono">R$ 725.341</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 7.253</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">10/06</td><td class="name">Sanderson / BSB</td><td>Froz de Borba e Mendonça Adv.</td><td class="mono">TJ/AM</td><td>BTG Pactual</td><td class="mono">—</td><td class="mono">R$ 100.027</td><td class="mono">19,5%</td><td class="mono" style="color:var(--gold)">R$ 19.525</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">10/06</td><td class="name">Sanderson / BSB</td><td>Construnorte Construção Civil</td><td class="mono">TJ/AM</td><td>BTG Pactual</td><td class="mono">R$ 5.195.910</td><td class="mono">R$ 2.052.721</td><td class="mono">13,3%</td><td class="mono" style="color:var(--gold)">R$ 271.985</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">10/06</td><td class="name">Grupo Cotação</td><td>DAZIRE FORTE BELO</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 4.123.090</td><td class="mono">R$ 1.340.213</td><td class="mono">10,6%</td><td class="mono" style="color:var(--gold)">R$ 141.526</td><td class="mono">Marcel</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">Grupo Cotação</td><td>SCHMIDEL &amp; ASSOCIADOS ADVOCACIA</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 141.738</td><td class="mono">R$ 44.497</td><td class="mono">14,7%</td><td class="mono" style="color:var(--gold)">R$ 6.550</td><td class="mono">Marcel</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>MARCIA DE PAIVA BARBOSA</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 91.456</td><td class="mono">R$ 12.606</td><td class="mono">13,8%</td><td class="mono" style="color:var(--gold)">R$ 2.388</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Weliton Teles Advogados</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 234.536</td><td class="mono">R$ 78.110</td><td class="mono">12,3%</td><td class="mono" style="color:var(--gold)">R$ 9.576</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Marceli Baliano Morais</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 8.691</td><td class="mono">R$ 541</td><td class="mono">13,7%</td><td class="mono" style="color:var(--gold)">R$ 210</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">Ana / IBP</td><td>JOAO ETELVINO CARDEAL GONCALVES</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 6.408.846</td><td class="mono">R$ 4.068.360</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>MARILENE UBALDINO DE ABREU</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 134.339</td><td class="mono">R$ 21.695</td><td class="mono">14,3%</td><td class="mono" style="color:var(--gold)">R$ 3.111</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>MV CONSTRUÇÕES E PROJETOS</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 208.108</td><td class="mono">R$ 35.349</td><td class="mono">13,8%</td><td class="mono" style="color:var(--gold)">R$ 4.875</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">Ana / IBP</td><td>NEMIS DA ROCHA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 636.030</td><td class="mono">R$ 480.661</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 4.807</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Keilla Ghislene Silva Alves</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 53.968</td><td class="mono">R$ 8.008</td><td class="mono">24,9%</td><td class="mono" style="color:var(--gold)">R$ 1.998</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Keilla Ghislene Silva Alves</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 102.591</td><td class="mono">R$ 16.505</td><td class="mono">14,2%</td><td class="mono" style="color:var(--gold)">R$ 2.349</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Keilla Ghislene Silva Alves</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 38.795</td><td class="mono">R$ 7.364</td><td class="mono">14,3%</td><td class="mono" style="color:var(--gold)">R$ 1.053</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">—</td><td>Theo Bernardo da Silva Marques</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 20.414</td><td class="mono">R$ 10.104</td><td class="mono">20,5%</td><td class="mono" style="color:var(--gold)">R$ 2.070</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">Grupo cotação</td><td>ISALETE APARECIDA DE ALMEIDA</td><td class="mono">TJPR</td><td>BTG Pactual</td><td class="mono">R$ 53.380</td><td class="mono">R$ 2.135</td><td class="mono">45,1%</td><td class="mono" style="color:var(--gold)">R$ 963</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">11/06</td><td class="name">Grupo cotação</td><td>ANTONIO ALCIR ANDRADE DE SOUZA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 132.676</td><td class="mono">R$ 83.359</td><td class="mono">13,3%</td><td class="mono" style="color:var(--gold)">R$ 11.070</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <p>Aura Capital Securitizadora S.A. &nbsp;·&nbsp; <span class="gold">Dados: 11/06/2026</span></p>
+    <p>Galera Mari Advogados &nbsp;·&nbsp; Uso interno</p>
+  </footer>
+</div>
+<script>
+  const d = new Date();
+  document.getElementById('today').textContent = d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+</script>
+</body>
+</html>
