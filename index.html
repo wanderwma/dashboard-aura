@@ -69,6 +69,7 @@
   .full-table-wrap table thead th{padding:12px 14px;}
   .full-table-wrap table tbody td{padding:10px 14px;font-size:11px;}
   .new-row{background:rgba(201,168,76,0.06)!important;}
+  .win-row{background:rgba(46,204,138,0.06)!important;}
   footer{border-top:1px solid rgba(201,168,76,0.15);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
   footer p{font-size:10px;color:var(--gray);letter-spacing:.08em;}
   footer .gold{color:var(--gold);}
@@ -87,43 +88,44 @@
     </div>
     <div class="header-meta">
       <div class="header-date" id="today"></div>
-      <div class="header-badge">Atualizado · 12/06/2026</div>
+      <div class="header-badge">Atualizado · 15/06/2026</div>
     </div>
   </header>
 
   <div class="section-label"><span>Pipeline de cotações</span></div>
   <div class="kpi-grid">
-    <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">65</div><div class="kpi-label">Total de cotações</div></div>
+    <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">67</div><div class="kpi-label">Total de cotações</div></div>
     <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value" style="color:var(--amber)">59</div><div class="kpi-label">Em andamento</div></div>
-    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value" style="color:var(--green)">0</div><div class="kpi-label">Fechadas</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value" style="color:var(--green)">2</div><div class="kpi-label">Fechadas ✓</div></div>
     <div class="kpi" style="--accent:var(--red)"><div class="kpi-value" style="color:var(--red)">6</div><div class="kpi-label">Recusadas</div></div>
   </div>
   <div class="kpi-grid-2">
-    <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value currency" style="color:var(--blue)">R$ 143,6M</div><div class="kpi-label">Volume em cotação</div></div>
-    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 0</div><div class="kpi-label">Volume fechado</div></div>
-    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value currency" style="color:var(--amber)">R$ 2,84M</div><div class="kpi-label">Receita potencial</div></div>
-    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 0</div><div class="kpi-label">Receita capturada</div></div>
+    <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value currency" style="color:var(--blue)">R$ 146,0M</div><div class="kpi-label">Volume em cotação</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 159.737</div><div class="kpi-label">Volume fechado</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value currency" style="color:var(--amber)">R$ 2,92M</div><div class="kpi-label">Receita potencial</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 27.991</div><div class="kpi-label">Receita capturada</div></div>
   </div>
 
   <div class="two-col">
     <div class="table-block">
-      <div class="table-header"><span class="table-title">Funil por status</span><span class="table-count">65 cotações</span></div>
+      <div class="table-header"><span class="table-title">Funil por status</span><span class="table-count">67 cotações</span></div>
       <div class="funil-row funil-head"><span>Status</span><span>Qtd</span><span>Barra</span><span>Vol. Crédito</span><span>%</span></div>
-      <div class="funil-row"><span class="badge badge-em-cotacao">Em cotação</span><span class="funil-qty">59</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:91%;background:var(--amber)"></div></div><span class="funil-vol">R$ 143.612.845</span><span class="funil-pct">91%</span></div>
-      <div class="funil-row"><span class="badge badge-fechada">Fechada</span><span class="funil-qty">0</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:0%;background:var(--green)"></div></div><span class="funil-vol">—</span><span class="funil-pct">0%</span></div>
+      <div class="funil-row"><span class="badge badge-em-cotacao">Em cotação</span><span class="funil-qty">59</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:88%;background:var(--amber)"></div></div><span class="funil-vol">R$ 146.015.018</span><span class="funil-pct">88%</span></div>
+      <div class="funil-row"><span class="badge badge-fechada">Fechada</span><span class="funil-qty">2</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:3%;background:var(--green)"></div></div><span class="funil-vol">R$ 159.737</span><span class="funil-pct">3%</span></div>
       <div class="funil-row"><span class="badge badge-recusada">Recusada</span><span class="funil-qty">6</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:9%;background:var(--red)"></div></div><span class="funil-vol">R$ 26.895.543</span><span class="funil-pct">9%</span></div>
     </div>
     <div class="table-block">
       <div class="table-header"><span class="table-title">Indicadores de performance</span></div>
       <table><tbody>
-        <tr><td class="name">Taxa de conversão</td><td class="mono" style="text-align:right;color:var(--gray)">0%</td></tr>
-        <tr><td class="name">Spread médio da carteira</td><td class="mono" style="text-align:right;color:var(--gold)">19,3%</td></tr>
-        <tr><td class="name">Ticket médio (ativos)</td><td class="mono" style="text-align:right;color:var(--white)">R$ 2.519.524</td></tr>
-        <tr><td class="name">Cotações — Breno</td><td class="mono" style="text-align:right;color:var(--white)">47</td></tr>
-        <tr><td class="name">Cotações — Marcel</td><td class="mono" style="text-align:right;color:var(--white)">3</td></tr>
+        <tr><td class="name">Taxa de conversão</td><td class="mono" style="text-align:right;color:var(--green)">3,0%</td></tr>
+        <tr><td class="name">Spread médio da carteira</td><td class="mono" style="text-align:right;color:var(--gold)">18,9%</td></tr>
+        <tr><td class="name">Ticket médio (ativos)</td><td class="mono" style="text-align:right;color:var(--white)">R$ 2.561.667</td></tr>
+        <tr><td class="name">Receita capturada</td><td class="mono" style="text-align:right;color:var(--green)">R$ 27.991</td></tr>
+        <tr><td class="name">Cotações — Breno</td><td class="mono" style="text-align:right;color:var(--white)">48</td></tr>
+        <tr><td class="name">Cotações — Marcel</td><td class="mono" style="text-align:right;color:var(--white)">4</td></tr>
         <tr><td class="name">Cotações — Marcus</td><td class="mono" style="text-align:right;color:var(--white)">15</td></tr>
-        <tr><td class="name">Parceiros ativos</td><td class="mono" style="text-align:right;color:var(--white)">14</td></tr>
-        <tr><td class="name">Fundos consultados</td><td class="mono" style="text-align:right;color:var(--white)">BTG + Celer</td></tr>
+        <tr><td class="name">Parceiros ativos</td><td class="mono" style="text-align:right;color:var(--white)">16</td></tr>
+        <tr><td class="name">Fundos consultados</td><td class="mono" style="text-align:right;color:var(--white)">BTG · Celer · Legacy</td></tr>
       </tbody></table>
     </div>
   </div>
@@ -132,9 +134,9 @@
   <div class="fundo-grid">
     <div class="fundo-card" style="--fundo-color:var(--amber)">
       <div class="fundo-name">BTG Pactual</div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">49</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 160.155.777</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 2.854.813</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">50</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 162.669.866</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 2.963.130</div></div>
     </div>
     <div class="fundo-card" style="--fundo-color:var(--blue)">
       <div class="fundo-name">Celer</div>
@@ -142,17 +144,17 @@
       <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 10.352.611</div></div>
       <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 82.577</div></div>
     </div>
-    <div class="fundo-card" style="--fundo-color:var(--gray)">
-      <div class="fundo-name">Outros</div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">0</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">—</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">—</div></div>
+    <div class="fundo-card" style="--fundo-color:#A78BFA">
+      <div class="fundo-name">Legacy ★ Novo</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">1</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 47.820</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 4.499</div></div>
     </div>
   </div>
 
   <div class="section-label"><span>Registro completo de cotações</span></div>
   <div class="full-table-wrap">
-    <div class="table-header"><span class="table-title">Todas as cotações</span><span class="table-count">65 registros · ★ novos hoje</span></div>
+    <div class="table-header"><span class="table-title">Todas as cotações</span><span class="table-count">67 registros · ★ novos · ✓ fechados hoje</span></div>
     <table>
       <thead><tr><th>Data</th><th>Parceiro</th><th>Cliente</th><th>Tribunal</th><th>Fundo</th><th>Valor Crédito</th><th>Valor Oferta</th><th>% Rec.</th><th>Receita Aura</th><th>Resp.</th><th>Status</th></tr></thead>
       <tbody>
@@ -184,7 +186,7 @@
         <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Maria Carmanhanes Da Fonseca</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 10.658.610</td><td class="mono">R$ 2.281.711</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 22.817</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Lais Seabra Miranda</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 12.500.295</td><td class="mono">R$ 2.192.849</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 175.428</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">01/06</td><td class="name">Maicon</td><td>Aristea Cordeiro Terra</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 10.572.124</td><td class="mono">R$ 1.861.316</td><td class="mono">8,0%</td><td class="mono" style="color:var(--gold)">R$ 148.905</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
-        <tr><td class="mono">01/06</td><td class="name">Jonas Candido</td><td>Márcio Da Silva Galvão</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 111.917</td><td class="mono">R$ 55.769</td><td class="mono">46,0%</td><td class="mono" style="color:var(--gold)">R$ 25.654</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr class="win-row"><td class="mono">01/06</td><td class="name">Jonas Candido</td><td>Dércio Lupiniano</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 111.917</td><td class="mono">R$ 57.253</td><td class="mono">41,0%</td><td class="mono" style="color:var(--green)">R$ 23.492</td><td class="mono">Breno</td><td><span class="badge badge-fechada">Fechada ✓</span></td></tr>
         <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Salvador Caser Netto</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 153.325</td><td class="mono">R$ 33.000</td><td class="mono">2,0%</td><td class="mono" style="color:var(--gold)">R$ 660</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Salvador Caser Netto</td><td class="mono">TJGO</td><td>Celer</td><td class="mono">R$ 176.684</td><td class="mono">R$ 76.712</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 767</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">03/06</td><td class="name">Jaqueline</td><td>Neuber Figueiredo</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 69.228</td><td class="mono">R$ 15.173</td><td class="mono">1,0%</td><td class="mono" style="color:var(--gold)">R$ 152</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
@@ -219,14 +221,16 @@
         <tr><td class="mono">11/06</td><td class="name">Valeria e Andressa</td><td>Theo Bernardo da Silva Marques</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 20.414</td><td class="mono">R$ 10.104</td><td class="mono">20,5%</td><td class="mono" style="color:var(--gold)">R$ 2.070</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">11/06</td><td class="name">Grupo cotação</td><td>ISALETE APARECIDA DE ALMEIDA</td><td class="mono">TJPR</td><td>BTG Pactual</td><td class="mono">R$ 53.380</td><td class="mono">R$ 2.135</td><td class="mono">45,1%</td><td class="mono" style="color:var(--gold)">R$ 963</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
         <tr><td class="mono">11/06</td><td class="name">Grupo cotação</td><td>ANTONIO ALCIR ANDRADE DE SOUZA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 132.676</td><td class="mono">R$ 83.359</td><td class="mono">13,3%</td><td class="mono" style="color:var(--gold)">R$ 11.070</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
-        <tr class="new-row"><td class="mono">12/06</td><td class="name">—</td><td>Maria Lenilma Dos Santos Pereira</td><td class="mono">TRF3</td><td>BTG Pactual</td><td class="mono">—</td><td class="mono">R$ 83.653</td><td class="mono">16,2%</td><td class="mono" style="color:var(--gold)">R$ 13.568</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
-        <tr class="new-row"><td class="mono">12/06</td><td class="name">—</td><td>ERIKA QUINTANILHA RODRIGUES</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 1.910.565</td><td class="mono">R$ 288.851</td><td class="mono">14,1%</td><td class="mono" style="color:var(--gold)">R$ 40.728</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">12/06</td><td class="name">—</td><td>Maria Lenilma Dos Santos Pereira</td><td class="mono">TRF3</td><td>BTG Pactual</td><td class="mono">—</td><td class="mono">R$ 83.653</td><td class="mono">16,2%</td><td class="mono" style="color:var(--gold)">R$ 13.568</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr><td class="mono">12/06</td><td class="name">—</td><td>ERIKA QUINTANILHA RODRIGUES</td><td class="mono">TJRJ</td><td>BTG Pactual</td><td class="mono">R$ 1.910.565</td><td class="mono">R$ 288.851</td><td class="mono">14,1%</td><td class="mono" style="color:var(--gold)">R$ 40.728</td><td class="mono">Marcus</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr class="new-row"><td class="mono">15/06</td><td class="name">Dr. Graciano ★</td><td>ENGECENTER CONSTRUTORA</td><td class="mono">TJMT</td><td>BTG Pactual</td><td class="mono">R$ 2.514.089</td><td class="mono">R$ 1.134.275</td><td class="mono">9,7%</td><td class="mono" style="color:var(--gold)">R$ 110.478</td><td class="mono">Breno</td><td><span class="badge badge-em-cotacao">Em cotação</span></td></tr>
+        <tr class="win-row"><td class="mono">15/05</td><td class="name">RR - Marcel ★</td><td>IDOARDO DO CARMO PEREIRA</td><td class="mono">TJMT</td><td style="color:#A78BFA">Legacy ★</td><td class="mono">R$ 47.820</td><td class="mono">R$ 22.000</td><td class="mono">20,4%</td><td class="mono" style="color:var(--green)">R$ 4.499</td><td class="mono">Marcel</td><td><span class="badge badge-fechada">Fechada ✓</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <footer>
-    <p>Aura Capital Securitizadora S.A. &nbsp;·&nbsp; <span class="gold">Dados: 12/06/2026</span></p>
+    <p>Aura Capital Securitizadora S.A. &nbsp;·&nbsp; <span class="gold">Dados: 15/06/2026</span></p>
     <p>Galera Mari Advogados &nbsp;·&nbsp; Uso interno</p>
   </footer>
 </div>
