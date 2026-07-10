@@ -23,13 +23,13 @@
   .section-label{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
   .section-label::before{content:'';display:block;width:3px;height:18px;background:var(--gold);border-radius:2px;flex-shrink:0;}
   .section-label span{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
-  .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px;}
+  .kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:16px;}
   .kpi-grid-2{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px;}
   .kpi{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:20px 18px 16px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;animation:fadeUp .5s ease both;}
   .kpi:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
   .kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--gold));opacity:.7;}
-  .kpi-value{font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:var(--white);margin-bottom:8px;}
-  .kpi-value.currency{font-size:22px;}
+  .kpi-value{font-family:'DM Serif Display',serif;font-size:34px;line-height:1;color:var(--white);margin-bottom:8px;}
+  .kpi-value.currency{font-size:20px;}
   .kpi-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;}
   .table-block{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
@@ -41,17 +41,26 @@
   tbody tr{border-bottom:1px solid rgba(255,255,255,0.03);transition:background .15s;}
   tbody tr:hover{background:rgba(201,168,76,0.04);}
   tbody tr:last-child{border-bottom:none;}
-  tbody td{padding:9px 13px;font-size:11px;color:rgba(250,250,248,0.8);}
+  tbody td{padding:8px 13px;font-size:11px;color:rgba(250,250,248,0.8);}
   td.name{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:var(--white);}
   td.mono{font-family:'DM Mono',monospace;font-size:10px;}
-  .badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+  .badge{display:inline-block;padding:2px 7px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
   .badge-em{background:rgba(244,165,53,0.15);color:var(--amber);border:1px solid rgba(244,165,53,0.3);}
   .badge-fechada{background:rgba(46,204,138,0.15);color:var(--green);border:1px solid rgba(46,204,138,0.3);}
   .badge-final{background:rgba(46,204,138,0.25);color:#00ff9d;border:1px solid rgba(46,204,138,0.5);}
-  .badge-prop{background:rgba(167,139,250,0.15);color:var(--violet);border:1px solid rgba(167,139,250,0.3);}
-  .badge-neg{background:rgba(91,156,246,0.15);color:var(--blue);border:1px solid rgba(91,156,246,0.3);}
   .badge-recusada{background:rgba(224,82,82,0.15);color:var(--red);border:1px solid rgba(224,82,82,0.3);}
-  .fundo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px;}
+  .badge-neg{background:rgba(91,156,246,0.15);color:var(--blue);border:1px solid rgba(91,156,246,0.3);}
+  .badge-prop{background:rgba(167,139,250,0.15);color:var(--violet);border:1px solid rgba(167,139,250,0.3);}
+  .funil-row{display:grid;grid-template-columns:180px 50px 1fr 130px 48px;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .funil-row:last-child{border-bottom:none;}
+  .funil-row.funil-head{padding:9px 18px;background:rgba(0,0,0,0.15);border-bottom:1px solid rgba(255,255,255,0.06);}
+  .funil-head span{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);}
+  .funil-bar-wrap{background:rgba(255,255,255,0.05);border-radius:2px;height:5px;overflow:hidden;}
+  .funil-bar{height:100%;border-radius:2px;}
+  .funil-vol{font-family:'DM Mono',monospace;font-size:10px;color:rgba(250,250,248,0.7);text-align:right;}
+  .funil-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);text-align:right;}
+  .funil-qty{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);}
+  .fundo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:48px;}
   .fundo-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:18px 20px;position:relative;overflow:hidden;}
   .fundo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--fundo-color,var(--gold));}
   .fundo-name{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fundo-color,var(--gold));margin-bottom:14px;}
@@ -61,15 +70,16 @@
   .fundo-stat-value.sm{font-size:12px;font-family:'DM Mono',monospace;}
   .full-table-wrap{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:48px;overflow-x:auto;}
   .win-row{background:rgba(46,204,138,0.06)!important;}
-  .neg-row{background:rgba(91,156,246,0.04)!important;}
-  .alert-box{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:4px;padding:16px 20px;margin-bottom:48px;display:flex;align-items:center;gap:12px;}
-  .alert-box span{font-size:11px;color:rgba(250,250,248,0.8);line-height:1.6;}
+  .new-row{background:rgba(201,168,76,0.04)!important;}
+  .neg-row{background:rgba(91,156,246,0.03)!important;}
+  .rec-row{background:rgba(224,82,82,0.04)!important;}
+  .destaque{background:rgba(46,204,138,0.08)!important;border-left:3px solid var(--green)!important;}
   footer{border-top:1px solid rgba(201,168,76,0.15);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
   footer p{font-size:10px;color:var(--gray);letter-spacing:.08em;}
   footer .gold{color:var(--gold);}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
   .table-block,.fundo-card,.full-table-wrap{animation:fadeUp .5s ease both;}
-  @media(max-width:1000px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid-2{grid-template-columns:repeat(2,1fr);}.two-col{grid-template-columns:1fr;}.fundo-grid{grid-template-columns:1fr;}}
+  @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid-2{grid-template-columns:repeat(2,1fr);}.two-col{grid-template-columns:1fr;}.fundo-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -83,50 +93,46 @@
     </div>
     <div class="header-meta">
       <div class="header-date" id="today"></div>
-      <div class="header-badge">Semana 1 · 01–03/07/2026</div>
+      <div class="header-badge">Atualizado · 10/07/2026</div>
     </div>
   </header>
 
-  <div class="alert-box">
-    <span>🚀 <strong>Julho aberto.</strong> Primeiras 9 cotações lançadas — 8 propostas enviadas e <strong>1 operação fechada</strong> já no primeiro dia útil. Pipeline: R$ 3,5M em volume originado. Receita potencial: R$ 254.739.</span>
-  </div>
-
-  <div class="section-label"><span>Pipeline julho 2026 — semana 1</span></div>
+  <div class="section-label"><span>Pipeline julho 2026 — 01 a 10/07</span></div>
   <div class="kpi-grid">
-    <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">9</div><div class="kpi-label">Total cotações</div></div>
-    <div class="kpi" style="--accent:var(--violet)"><div class="kpi-value" style="color:var(--violet)">8</div><div class="kpi-label">Proposta enviada</div></div>
+    <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">21</div><div class="kpi-label">Total cotações</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value" style="color:var(--amber)">1</div><div class="kpi-label">Em cotação</div></div>
+    <div class="kpi" style="--accent:var(--violet)"><div class="kpi-value" style="color:var(--violet)">18</div><div class="kpi-label">Proposta enviada</div></div>
     <div class="kpi" style="--accent:var(--green)"><div class="kpi-value" style="color:var(--green)">1</div><div class="kpi-label">Fechada ✓</div></div>
+    <div class="kpi" style="--accent:var(--red)"><div class="kpi-value" style="color:var(--red)">1</div><div class="kpi-label">Recusada</div></div>
     <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value" style="color:var(--blue)">0</div><div class="kpi-label">Em negociação</div></div>
-    <div class="kpi" style="--accent:var(--red)"><div class="kpi-value" style="color:var(--red)">0</div><div class="kpi-label">Recusadas</div></div>
   </div>
   <div class="kpi-grid-2">
-    <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value currency" style="color:var(--blue)">R$ 3,5M</div><div class="kpi-label">Volume total originado</div></div>
-    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 21.543</div><div class="kpi-label">Volume fechado</div></div>
-    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value currency" style="color:var(--amber)">R$ 254.739</div><div class="kpi-label">Receita potencial</div></div>
-    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 2.823</div><div class="kpi-label">Receita capturada</div></div>
+    <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value currency" style="color:var(--blue)">R$ 31,4M</div><div class="kpi-label">Volume total originado</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 6,4M</div><div class="kpi-label">Volume fechado</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value currency" style="color:var(--amber)">R$ 1,05M</div><div class="kpi-label">Receita potencial</div></div>
+    <div class="kpi" style="--accent:var(--green)"><div class="kpi-value currency" style="color:var(--green)">R$ 133.331</div><div class="kpi-label">Receita capturada</div></div>
   </div>
 
   <div class="two-col">
     <div class="table-block">
-      <div class="table-header"><span class="table-title">Indicadores de performance</span></div>
-      <table><tbody>
-        <tr><td class="name">Taxa de conversão</td><td class="mono" style="text-align:right;color:var(--green)">11,1%</td></tr>
-        <tr><td class="name">Volume total originado</td><td class="mono" style="text-align:right;color:var(--white)">R$ 3.548.884</td></tr>
-        <tr><td class="name">Receita potencial (pipeline)</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 254.739</td></tr>
-        <tr><td class="name">Receita capturada</td><td class="mono" style="text-align:right;color:var(--green)">R$ 2.823</td></tr>
-        <tr><td class="name">Cotações — Breno</td><td class="mono" style="text-align:right;color:var(--white)">7</td></tr>
-        <tr><td class="name">Cotações — Marcel</td><td class="mono" style="text-align:right;color:var(--white)">2</td></tr>
-        <tr><td class="name">Parceiros ativos</td><td class="mono" style="text-align:right;color:var(--white)">Ana/IBP · Lead/TRF · Rafael · Marcel · Parceiros MT</td></tr>
-      </tbody></table>
+      <div class="table-header"><span class="table-title">Funil por status</span><span class="table-count">21 cotações · julho</span></div>
+      <div class="funil-row funil-head"><span>Status</span><span>Qtd</span><span>Barra</span><span>Vol. Crédito</span><span>%</span></div>
+      <div class="funil-row"><span class="badge badge-prop">Proposta enviada</span><span class="funil-qty">18</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:86%;background:var(--violet)"></div></div><span class="funil-vol">R$ 24.968.256</span><span class="funil-pct">86%</span></div>
+      <div class="funil-row"><span class="badge badge-fechada">Fechada ✓</span><span class="funil-qty">1</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:5%;background:var(--green)"></div></div><span class="funil-vol">R$ 6.408.846</span><span class="funil-pct">5%</span></div>
+      <div class="funil-row"><span class="badge badge-em">Em cotação</span><span class="funil-qty">1</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:4%;background:var(--amber)"></div></div><span class="funil-vol">R$ 24.342</span><span class="funil-pct">4%</span></div>
+      <div class="funil-row"><span class="badge badge-recusada">Recusada</span><span class="funil-qty">1</span><div class="funil-bar-wrap"><div class="funil-bar" style="width:5%;background:var(--red)"></div></div><span class="funil-vol">R$ 21.543</span><span class="funil-pct">5%</span></div>
     </div>
     <div class="table-block">
-      <div class="table-header"><span class="table-title">Comparativo Junho × Julho</span><span class="table-count">semana 1</span></div>
+      <div class="table-header"><span class="table-title">Indicadores · Julho vs Junho</span></div>
       <table><tbody>
-        <tr><td class="name">Cotações lançadas</td><td class="mono" style="text-align:right;color:var(--gray)">83 jun</td><td class="mono" style="text-align:right;color:var(--white)">9 jul</td></tr>
-        <tr><td class="name">Propostas enviadas</td><td class="mono" style="text-align:right;color:var(--gray)">20 jun</td><td class="mono" style="text-align:right;color:var(--white)">8 jul</td></tr>
-        <tr><td class="name">Fechadas</td><td class="mono" style="text-align:right;color:var(--gray)">1 jun</td><td class="mono" style="text-align:right;color:var(--green)">1 jul ✓</td></tr>
-        <tr><td class="name">Receita capturada</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 19.375 jun</td><td class="mono" style="text-align:right;color:var(--green)">R$ 2.823 jul</td></tr>
-        <tr><td class="name">Rec. potencial</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 2,31M jun</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 254k jul</td></tr>
+        <tr><td class="name">Cotações lançadas</td><td class="mono" style="text-align:right;color:var(--gray)">83 jun</td><td class="mono" style="text-align:right;color:var(--white)">21 jul</td></tr>
+        <tr><td class="name">Propostas enviadas</td><td class="mono" style="text-align:right;color:var(--gray)">20 jun</td><td class="mono" style="text-align:right;color:var(--violet)">18 jul</td></tr>
+        <tr><td class="name">Fechamentos</td><td class="mono" style="text-align:right;color:var(--gray)">1 jun</td><td class="mono" style="text-align:right;color:var(--green)">1 jul ✓</td></tr>
+        <tr><td class="name">Receita capturada</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 19.375 jun</td><td class="mono" style="text-align:right;color:var(--green)">R$ 133.331 jul 🔥</td></tr>
+        <tr><td class="name">Crescimento receita</td><td colspan="2" class="mono" style="text-align:right;color:var(--green)">+588% vs junho</td></tr>
+        <tr><td class="name">Receita potencial</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 2,31M jun</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 1,05M jul</td></tr>
+        <tr><td class="name">Consultores ativos</td><td colspan="2" class="mono" style="text-align:right;color:var(--white)">Breno:16 · Marcel:4 · Marcus:1</td></tr>
+        <tr><td class="name">Novos parceiros</td><td colspan="2" class="mono" style="text-align:right;color:var(--white)">Thais/IBP · Ana Prado/IBP · Rafael Campos</td></tr>
       </tbody></table>
     </div>
   </div>
@@ -135,45 +141,69 @@
   <div class="fundo-grid">
     <div class="fundo-card" style="--fundo-color:var(--amber)">
       <div class="fundo-name">BTG Pactual</div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">3</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 2.356.997</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 227.614</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">6</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 15.695.021</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 572.725</div></div>
     </div>
     <div class="fundo-card" style="--fundo-color:var(--blue)">
       <div class="fundo-name">Celer</div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">5</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 1.170.344</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 27.125</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">12</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 9.273.235</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 478.793</div></div>
+    </div>
+    <div class="fundo-card" style="--fundo-color:var(--violet)">
+      <div class="fundo-name">Legacy</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">1</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 6.408.846</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 133.331 ✓</div></div>
+    </div>
+    <div class="fundo-card" style="--fundo-color:#34D399">
+      <div class="fundo-name">Jusvera</div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">1</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 24.342</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 1.999</div></div>
     </div>
     <div class="fundo-card" style="--fundo-color:var(--gold)">
       <div class="fundo-name">Aura Capital</div>
       <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">1</div></div>
       <div class="fundo-stat"><div class="fundo-stat-label">Volume total</div><div class="fundo-stat-value sm">R$ 21.543</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 2.823 ✓</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Receita Aura</div><div class="fundo-stat-value sm">R$ 2.823</div></div>
     </div>
   </div>
 
-  <div class="section-label"><span>Registro de cotações · Julho 2026</span></div>
+  <div class="section-label"><span>Registro completo · Julho 2026</span></div>
   <div class="full-table-wrap">
-    <div class="table-header"><span class="table-title">9 cotações · semana 1</span><span class="table-count">01 – 03/07/2026</span></div>
+    <div class="table-header"><span class="table-title">21 cotações · 01–10/07/2026</span><span class="table-count">★ novos 06–10/07 · ✓ fechado · 🔴 recusada</span></div>
     <table>
       <thead><tr><th>#</th><th>Data</th><th>Parceiro</th><th>Cliente</th><th>Tribunal</th><th>Fundo</th><th>Valor Crédito</th><th>Valor Oferta</th><th>% Rec.</th><th>Receita</th><th>Resp.</th><th>Status</th></tr></thead>
       <tbody>
 <tr class="neg-row"><td class="mono">01</td><td class="mono">01/07</td><td class="name">Ana / IBP</td><td>Guilherme Guerra Reis</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 218.339</td><td class="mono">R$ 126.614</td><td class="mono">26,8%</td><td class="mono" style="color:var(--violet)">R$ 33.932</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
 <tr class="neg-row"><td class="mono">02</td><td class="mono">02/07</td><td class="name">Lead / TRF</td><td>MARIA DE FÁTIMA COLANAZI</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 145.798</td><td class="mono">R$ 80.940</td><td class="mono">13,0%</td><td class="mono" style="color:var(--violet)">R$ 10.490</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
-<tr class="win-row"><td class="mono">03</td><td class="mono">02/07</td><td class="name">Rafael</td><td>NERCI PIRES CAMARGO DE MELO</td><td class="mono">TJMT</td><td>Aura Capital</td><td class="mono">R$ 21.543</td><td class="mono">R$ 10.082</td><td class="mono">28,0%</td><td class="mono" style="color:var(--green)">R$ 2.823</td><td class="mono">Breno</td><td><span class="badge badge-fechada">Fechada ✓</span></td></tr>
-<tr class="neg-row"><td class="mono">04</td><td class="mono">02/07</td><td class="name">Marcel</td><td>DEBORA MARIANE DE ASSIS FERNANDES</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 765.623</td><td class="mono">R$ 478.454</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="rec-row"><td class="mono">03</td><td class="mono">02/07</td><td class="name">Rafael</td><td>NERCI PIRES CAMARGO DE MELO</td><td class="mono">TJMT</td><td>Aura Capital</td><td class="mono">R$ 21.543</td><td class="mono">R$ 10.082</td><td class="mono">28,0%</td><td class="mono" style="color:var(--red)">R$ 2.823</td><td class="mono">Breno</td><td><span class="badge badge-recusada">Recusada 🔴</span></td></tr>
+<tr class="neg-row"><td class="mono">04</td><td class="mono">02/07</td><td class="name">Marcel</td><td>DEBORA MARIANE DE ASSIS FERN.</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 594.719</td><td class="mono">R$ 478.454</td><td class="mono">4,1%</td><td class="mono" style="color:var(--violet)">R$ 19.569</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
 <tr class="neg-row"><td class="mono">05</td><td class="mono">02/07</td><td class="name">Ana / IBP</td><td>ADELINO DESEN JUNIOR</td><td class="mono">TJSP</td><td>Celer</td><td class="mono">R$ 168.381</td><td class="mono">R$ 45.921</td><td class="mono">17,3%</td><td class="mono" style="color:var(--violet)">R$ 7.949</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
 <tr class="neg-row"><td class="mono">06</td><td class="mono">02/07</td><td class="name">Ana / IBP</td><td>ROBERTO DOMINGUES</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 1.992.860</td><td class="mono">R$ 1.308.517</td><td class="mono">14,0%</td><td class="mono" style="color:var(--violet)">R$ 183.192</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
-<tr class="neg-row"><td class="mono">07</td><td class="mono">02/07</td><td class="name">Marcel</td><td>AFONSO PEREIRA DOS SANTOS</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 150.275</td><td class="mono">R$ 91.610</td><td class="mono">10,0%</td><td class="mono" style="color:var(--violet)">R$ 9.161</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="neg-row"><td class="mono">07</td><td class="mono">02/07</td><td class="name">Marcel</td><td>AFONSO PEREIRA DOS SANTOS</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 150.275</td><td class="mono">R$ 91.610</td><td class="mono">3,5%</td><td class="mono" style="color:var(--violet)">R$ 3.161</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
 <tr class="neg-row"><td class="mono">08</td><td class="mono">03/07</td><td class="name">Lead / TRF</td><td>SILVANIA NUNES SOARES</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 36.164</td><td class="mono">R$ 18.655</td><td class="mono">27,6%</td><td class="mono" style="color:var(--violet)">R$ 5.149</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
 <tr class="neg-row"><td class="mono">09</td><td class="mono">03/07</td><td class="name">Parceiros MT</td><td>LILIANE DE SOUZA LIMA</td><td class="mono">TRF3</td><td>Celer</td><td class="mono">R$ 49.901</td><td class="mono">R$ 30.222</td><td class="mono">16,1%</td><td class="mono" style="color:var(--violet)">R$ 4.866</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">10</td><td class="mono">06/07</td><td class="name">Lead / TRF ★</td><td>MIGUEL VICENTE MATOS AMARAL</td><td class="mono">TRF1</td><td style="color:#34D399">Jusvera</td><td class="mono">R$ 24.342</td><td class="mono">R$ 13.882</td><td class="mono">14,4%</td><td class="mono" style="color:var(--amber)">R$ 1.999</td><td class="mono">Marcus</td><td><span class="badge badge-em">Em cotação</span></td></tr>
+<tr class="new-row"><td class="mono">11</td><td class="mono">06/07</td><td class="name">Thais / IBP ★</td><td>EDUARDO SANT ANNA DOS REIS</td><td class="mono">TJRJ</td><td>Celer</td><td class="mono">R$ 152.579</td><td class="mono">R$ 40.332</td><td class="mono">17,1%</td><td class="mono" style="color:var(--violet)">R$ 6.909</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">12</td><td class="mono">06/07</td><td class="name">Ana / IBP ★</td><td>JOÃO FLÁVIO SILVA SAMPAIO</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 429.783</td><td class="mono">R$ 248.073</td><td class="mono">29,4%</td><td class="mono" style="color:var(--violet)">R$ 73.038</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">13</td><td class="mono">06/07</td><td class="name">Ana Prado / IBP ★</td><td>ANTÔNIO FRANCISCO ALMEIDA PA.</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 41.758</td><td class="mono">R$ 22.171</td><td class="mono">19,0%</td><td class="mono" style="color:var(--violet)">R$ 4.212</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">14</td><td class="mono">07/07</td><td class="name">Ana Prado / IBP ★</td><td>PAULA CONCEIÇÃO BELONI</td><td class="mono">TJGO</td><td>Celer</td><td class="mono">R$ 257.844</td><td class="mono">R$ 72.145</td><td class="mono">13,8%</td><td class="mono" style="color:var(--violet)">R$ 9.956</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">15</td><td class="mono">08/07</td><td class="name">Ana / IBP ★</td><td>SERGIO GOMES DE LIMA</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 103.570</td><td class="mono">R$ 62.146</td><td class="mono">22,2%</td><td class="mono" style="color:var(--violet)">R$ 13.784</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="win-row destaque"><td class="mono">16</td><td class="mono">08/07</td><td class="name">Ana / IBP ★</td><td>JOÃO ETELVINO CARDEAL GONÇAL.</td><td class="mono">TRF1</td><td style="color:var(--violet)">Legacy</td><td class="mono">R$ 6.408.846</td><td class="mono">R$ 1.100.000</td><td class="mono">12,1%</td><td class="mono" style="color:var(--green)">R$ 133.331</td><td class="mono">Breno</td><td><span class="badge badge-fechada">Fechada ✓</span></td></tr>
+<tr class="new-row"><td class="mono">17</td><td class="mono">08/07</td><td class="name">Aura Capital ★</td><td>CLAUDIOMIRO DOS REIS RIBEIRO</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 161.102</td><td class="mono">R$ 85.000</td><td class="mono">19,9%</td><td class="mono" style="color:var(--violet)">R$ 16.872</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">18</td><td class="mono">09/07</td><td class="name">Rafael Campos ★</td><td>RENATO GOMES SOARES</td><td class="mono">TJPA</td><td>BTG Pactual</td><td class="mono">R$ 107.787</td><td class="mono">R$ 40.040</td><td class="mono">9,7%</td><td class="mono" style="color:var(--violet)">R$ 3.900</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">19</td><td class="mono">09/07</td><td class="name">Rafael Campos ★</td><td>Lucia Maria Da Silva</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 211.473</td><td class="mono">R$ 114.382</td><td class="mono">38,3%</td><td class="mono" style="color:var(--violet)">R$ 43.808</td><td class="mono">Marcel</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">20</td><td class="mono">10/07</td><td class="name">Ana / IBP ★</td><td>ECCIR EMPRESA DE CONSTRUÇÕES</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 7.127.159</td><td class="mono">R$ 5.078.270</td><td class="mono">6,2%</td><td class="mono" style="color:var(--violet)">R$ 313.329</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
+<tr class="new-row"><td class="mono">21</td><td class="mono">10/07</td><td class="name">Rafael Campos ★</td><td>CORDEIRO, LARANJEIRAS E MAIA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 13.018.765</td><td class="mono">R$ 9.562.776</td><td class="mono">3,1%</td><td class="mono" style="color:var(--violet)">R$ 297.402</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada 💜</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <footer>
-    <p>Aura Capital Securitizadora S.A. &nbsp;·&nbsp; <span class="gold">Julho 2026 · Semana 1 · 03/07/2026</span></p>
+    <p>Aura Capital Securitizadora S.A. &nbsp;·&nbsp; <span class="gold">Julho 2026 · 21 cotações · atualizado 10/07/2026</span></p>
     <p>Galera Mari Advogados &nbsp;·&nbsp; Uso interno</p>
   </footer>
 </div>
