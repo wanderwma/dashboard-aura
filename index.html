@@ -24,7 +24,7 @@
   .section-label::before{content:'';display:block;width:3px;height:18px;background:var(--gold);border-radius:2px;flex-shrink:0;}
   .section-label span{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
   .kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:16px;}
-  .kpi-grid-b{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px;}
+  .kpi-grid-b{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px;}
   .kpi{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:20px 18px 16px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;animation:fadeUp .5s ease both;}
   .kpi:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
   .kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--gold));opacity:.7;}
@@ -72,7 +72,7 @@
   footer .gold{color:var(--gold);}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
   .table-block,.fundo-card,.full-table-wrap{animation:fadeUp .5s ease both;}
-  @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid-b{grid-template-columns:repeat(2,1fr);}.two-col{grid-template-columns:1fr;}.fundo-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}.kpi-grid-b{grid-template-columns:repeat(1,1fr);}.two-col{grid-template-columns:1fr;}.fundo-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -94,7 +94,7 @@
   <div class="kpi-grid">
     <div class="kpi" style="--accent:var(--gold)"><div class="kpi-value">65</div><div class="kpi-label">Total cotações</div></div>
     <div class="kpi" style="--accent:var(--violet)"><div class="kpi-value" style="color:var(--violet)">32</div><div class="kpi-label">Proposta enviada</div><div class="kpi-sub">Aguardando retorno do cliente</div></div>
-    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value" style="color:var(--amber)">4</div><div class="kpi-label">Contratos assinados</div><div class="kpi-sub">Fechadas · aguardando liquidação</div></div>
+    <div class="kpi" style="--accent:var(--amber)"><div class="kpi-value" style="color:var(--amber)">4</div><div class="kpi-label">Prev. de fechamento</div><div class="kpi-sub">Proposta aceita · aguardando assinatura</div></div>
     <div class="kpi" style="--accent:var(--green)"><div class="kpi-value" style="color:var(--green)">2</div><div class="kpi-label">Finalizadas (ganho)</div><div class="kpi-sub">Operações pagas e concluídas</div></div>
     <div class="kpi" style="--accent:var(--blue)"><div class="kpi-value" style="color:var(--blue)">3</div><div class="kpi-label">Em negociação</div><div class="kpi-sub">Contraproposta em andamento</div></div>
     <div class="kpi" style="--accent:var(--red)"><div class="kpi-value" style="color:var(--red)">15</div><div class="kpi-label">Recusadas</div><div class="kpi-sub">Não houve acordo</div></div>
@@ -107,19 +107,14 @@
       <div class="kpi-sub">2 operações efetivamente pagas e concluídas em julho<br>Douglas Camargo (R$ 65.315) · Weny Pablo (R$ 2.538)</div>
     </div>
     <div class="kpi" style="--accent:var(--amber)">
-      <div class="kpi-label">Receita Aura · Contratos Assinados</div>
+      <div class="kpi-label">Receita Aura · Previsão de Fechamento</div>
       <div class="kpi-value md" style="color:var(--amber)">R$ 2.797.066</div>
-      <div class="kpi-sub">4 contratos fechados aguardando liquidação pelos fundos<br>Rosas (R$2,33M) · Lúcia Helena · Diva Castelo · Patricia Matos</div>
+      <div class="kpi-sub">4 propostas aceitas pelo cliente · aguardando assinatura e liquidação<br>Rosas (R$2,33M) · Lúcia Helena · Diva Castelo · Patricia Matos</div>
     </div>
     <div class="kpi" style="--accent:var(--violet)">
       <div class="kpi-label">Receita Aura · Potencial Pipeline</div>
       <div class="kpi-value md" style="color:var(--violet)">R$ 14.108.590</div>
       <div class="kpi-sub">Projeção máxima se todo o pipeline ativo (prop. + neg.) fechar</div>
-    </div>
-    <div class="kpi" style="--accent:var(--blue)">
-      <div class="kpi-label">Crédito Total · Contratos Assinados</div>
-      <div class="kpi-value md" style="color:var(--blue)">R$ 60,7M</div>
-      <div class="kpi-sub">Valor de face dos processos nos 4 contratos fechados em julho</div>
     </div>
   </div>
 
@@ -130,22 +125,22 @@
         <tr><td class="name">Cotações lançadas</td><td class="mono" style="text-align:right;color:var(--gray)">83 jun</td><td class="mono" style="text-align:right;color:var(--white)">65 jul</td></tr>
         <tr><td class="name">Propostas enviadas</td><td class="mono" style="text-align:right;color:var(--gray)">20 jun</td><td class="mono" style="text-align:right;color:var(--violet)">32 jul</td></tr>
         <tr><td class="name">Operações finalizadas (pagas)</td><td class="mono" style="text-align:right;color:var(--gray)">1 jun</td><td class="mono" style="text-align:right;color:var(--green)">2 jul</td></tr>
-        <tr><td class="name">Contratos assinados</td><td class="mono" style="text-align:right;color:var(--gray)">0 jun</td><td class="mono" style="text-align:right;color:var(--amber)">4 jul</td></tr>
+        <tr><td class="name">Previsão de fechamento</td><td class="mono" style="text-align:right;color:var(--gray)">0 jun</td><td class="mono" style="text-align:right;color:var(--amber)">4 jul</td></tr>
         <tr><td class="name">Receita efetivamente recebida</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 19.375 jun</td><td class="mono" style="text-align:right;color:var(--green)">R$ 67.853 jul</td></tr>
-        <tr><td class="name">Receita contratos assinados</td><td class="mono" style="text-align:right;color:var(--gray)">— jun</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 2.797.066 jul</td></tr>
+        <tr><td class="name">Receita previsão de fechamento</td><td class="mono" style="text-align:right;color:var(--gray)">— jun</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 2.797.066 jul</td></tr>
         <tr><td class="name">Receita potencial pipeline</td><td class="mono" style="text-align:right;color:var(--gray)">R$ 2,31M jun</td><td class="mono" style="text-align:right;color:var(--violet)">R$ 14,1M jul</td></tr>
         <tr><td class="name">Consultores</td><td colspan="2" class="mono" style="text-align:right;color:var(--white)">Breno:41 · Marcel:17 · Luís:5 · Wander:1 · Marcus:1</td></tr>
       </tbody></table>
     </div>
     <div class="table-block">
-      <div class="table-header"><span class="table-title">Operações finalizadas e contratos assinados</span></div>
+      <div class="table-header"><span class="table-title">Operações finalizadas e previsões de fechamento</span></div>
       <table><tbody>
         <tr><td colspan="2" style="font-size:8px;font-weight:700;letter-spacing:.15em;color:var(--green);padding:8px 11px 4px;text-transform:uppercase;">✓ Finalizadas — receita recebida</td></tr>
         <tr class="fin-row"><td class="name">Douglas Camargo de Anunciação</td><td class="mono" style="text-align:right;color:#00ffaa;font-weight:700">R$ 65.315</td></tr>
         <tr><td style="font-size:9px;color:var(--gray)" colspan="2">13/07 · Aura Capital · Breno · TJMT</td></tr>
         <tr class="fin-row"><td class="name">Weny Pablo Fernandes Simioni</td><td class="mono" style="text-align:right;color:#00ffaa;font-weight:700">R$ 2.538</td></tr>
         <tr><td style="font-size:9px;color:var(--gray)" colspan="2">Iniciada em jun/26 · Finalizada jul/26 · Celer · Marcel · TRF1</td></tr>
-        <tr><td colspan="2" style="font-size:8px;font-weight:700;letter-spacing:.15em;color:var(--amber);padding:10px 11px 4px;text-transform:uppercase;">⏳ Contratos assinados — aguardando liquidação</td></tr>
+        <tr><td colspan="2" style="font-size:8px;font-weight:700;letter-spacing:.15em;color:var(--amber);padding:10px 11px 4px;text-transform:uppercase;">⏳ Proposta aceita — aguardando assinatura e liquidação</td></tr>
         <tr class="win-row"><td class="name">Rosas Advogados</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 2.333.495</td></tr>
         <tr><td style="font-size:9px;color:var(--gray)" colspan="2">28/07 · Celer · Ana Carolina/IBP · Breno · TJDF · R$57,4M crédito</td></tr>
         <tr class="win-row"><td class="name">Lúcia Helena Ferreira</td><td class="mono" style="text-align:right;color:var(--amber)">R$ 369.653</td></tr>
@@ -163,13 +158,13 @@
     <div class="fundo-card" style="--fundo-color:var(--blue)">
       <div class="fundo-name">Celer</div>
       <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">29</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Contratos assinados</div><div class="fundo-stat-value sm">Rosas + Lúcia Helena</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Prev. fechamento</div><div class="fundo-stat-value sm">Rosas + Lúcia Helena</div></div>
       <div class="fundo-stat"><div class="fundo-stat-label">Receita (contratos)</div><div class="fundo-stat-value sm" style="color:var(--amber)">R$ 2.703.148</div></div>
     </div>
     <div class="fundo-card" style="--fundo-color:var(--amber)">
       <div class="fundo-name">BTG Pactual</div>
       <div class="fundo-stat"><div class="fundo-stat-label">Cotações</div><div class="fundo-stat-value">15</div></div>
-      <div class="fundo-stat"><div class="fundo-stat-label">Contratos assinados</div><div class="fundo-stat-value sm">Diva Castelo + Patricia</div></div>
+      <div class="fundo-stat"><div class="fundo-stat-label">Prev. fechamento</div><div class="fundo-stat-value sm">Diva Castelo + Patricia</div></div>
       <div class="fundo-stat"><div class="fundo-stat-label">Receita (contratos)</div><div class="fundo-stat-value sm" style="color:var(--amber)">R$ 93.918</div></div>
     </div>
     <div class="fundo-card" style="--fundo-color:var(--green)">
@@ -188,7 +183,7 @@
 
   <div class="section-label"><span>Registro completo · Julho 2026</span></div>
   <div class="full-table-wrap">
-    <div class="table-header"><span class="table-title">65 cotações · 01–28/07/2026 · Fechamento do mês</span><span class="table-count">✓ finalizada · ⏳ contrato assinado · ★ novos 28/07</span></div>
+    <div class="table-header"><span class="table-title">65 cotações · 01–28/07/2026 · Fechamento do mês</span><span class="table-count">✓ finalizada · ⏳ prev. fechamento · ★ novos 28/07</span></div>
     <table>
       <thead><tr><th>#</th><th>Data</th><th>Parceiro</th><th>Cliente</th><th>Trib.</th><th>Fundo</th><th>Crédito (face)</th><th>Oferta ao cliente</th><th>% Rec.</th><th>Receita Aura</th><th>Resp.</th><th>Status</th></tr></thead>
       <tbody>
@@ -221,12 +216,12 @@
 <tr class="rec-row"><td class="mono">27</td><td class="mono">14/07</td><td class="name">Parceiros Municipal</td><td>ANAIANY CRISTINA DE ARAUJO V.</td><td class="mono">TJMT</td><td>Parceiro MT</td><td class="mono">R$ 32.875</td><td class="mono">—</td><td class="mono">—</td><td class="mono" style="color:var(--red)">—</td><td class="mono">Marcel</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
 <tr><td class="mono">28</td><td class="mono">14/07</td><td class="name">Mesquita/Nechri</td><td>MARCO ANTONIO SOUZA DE FREITAS</td><td class="mono">TJTO</td><td>—</td><td class="mono">R$ 423.714</td><td class="mono">R$ 66.789</td><td class="mono">1,0%</td><td class="mono" style="color:var(--violet)">R$ 668</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
 <tr><td class="mono">29</td><td class="mono">14/07</td><td class="name">Mesquita/Nechri</td><td>ELKE MADSON NASCIMENTO PINHO</td><td class="mono">TJDF</td><td>BTG Pactual</td><td class="mono">R$ 136.026</td><td class="mono">R$ 70.047</td><td class="mono">23,5%</td><td class="mono" style="color:var(--violet)">R$ 16.461</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
-<tr class="win-row"><td class="mono">30</td><td class="mono">14/07</td><td class="name">Mesquita/Nechri</td><td>PATRICIA MATOS SOUZA</td><td class="mono">TJDF</td><td>BTG Pactual</td><td class="mono">R$ 284.608</td><td class="mono">R$ 162.989</td><td class="mono">12,3%</td><td class="mono" style="color:var(--amber)">R$ 20.097</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Contrato assinado</span></td></tr>
+<tr class="win-row"><td class="mono">30</td><td class="mono">14/07</td><td class="name">Mesquita/Nechri</td><td>PATRICIA MATOS SOUZA</td><td class="mono">TJDF</td><td>BTG Pactual</td><td class="mono">R$ 284.608</td><td class="mono">R$ 162.989</td><td class="mono">12,3%</td><td class="mono" style="color:var(--amber)">R$ 20.097</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Prev. fechamento</span></td></tr>
 <tr class="rec-row"><td class="mono">31</td><td class="mono">14/07</td><td class="name">Parceiro Municipal</td><td>CARLOS JOSE SOARDIS</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 135.908</td><td class="mono">R$ 84.953</td><td class="mono">2,0%</td><td class="mono" style="color:var(--red)">—</td><td class="mono">Marcel</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
 <tr><td class="mono">32</td><td class="mono">14/07</td><td class="name">Mesquita/Nechri</td><td>MARIA DAS DORES BASTOS E FRE.</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 140.776</td><td class="mono">R$ 24.908</td><td class="mono">11,8%</td><td class="mono" style="color:var(--violet)">R$ 2.932</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
 <tr><td class="mono">33</td><td class="mono">14/07</td><td class="name">Ana / IBP</td><td>LUIS CARLOS DOS SANTOS DORES</td><td class="mono">TJSP</td><td>BTG Pactual</td><td class="mono">R$ 239.345</td><td class="mono">R$ 32.541</td><td class="mono">18,9%</td><td class="mono" style="color:var(--violet)">R$ 6.160</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
 <tr><td class="mono">34</td><td class="mono">15/07</td><td class="name">Cotações Parceiros</td><td>INSTITUTO CLINICO DE FORTALEZA</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 137.712.506</td><td class="mono">R$ 80.970.436</td><td class="mono">11,3%</td><td class="mono" style="color:var(--amber)">R$ 9.190.145</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
-<tr class="win-row"><td class="mono">35</td><td class="mono">15/07</td><td class="name">Mesquita/Nechri</td><td>DIVA CASTELO BRANCO ARRUDA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 495.533</td><td class="mono">R$ 280.902</td><td class="mono">26,3%</td><td class="mono" style="color:var(--amber)">R$ 73.821</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Contrato assinado</span></td></tr>
+<tr class="win-row"><td class="mono">35</td><td class="mono">15/07</td><td class="name">Mesquita/Nechri</td><td>DIVA CASTELO BRANCO ARRUDA</td><td class="mono">TRF1</td><td>BTG Pactual</td><td class="mono">R$ 495.533</td><td class="mono">R$ 280.902</td><td class="mono">26,3%</td><td class="mono" style="color:var(--amber)">R$ 73.821</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Prev. fechamento</span></td></tr>
 <tr><td class="mono">36</td><td class="mono">15/07</td><td class="name">Ana Prado / IBP</td><td>FERNANDO WARLEY ALVES LIMA</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 46.801</td><td class="mono">R$ 27.097</td><td class="mono">22,2%</td><td class="mono" style="color:var(--violet)">R$ 6.013</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
 <tr class="rec-row"><td class="mono">37</td><td class="mono">16/07</td><td class="name">Parceiros Municipal</td><td>LEIDIANE OLIVEIRA MELO</td><td class="mono">TJMT</td><td>Parceiro MT</td><td class="mono">R$ 31.200</td><td class="mono">—</td><td class="mono">—</td><td class="mono" style="color:var(--red)">—</td><td class="mono">Marcel</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
 <tr><td class="mono">38</td><td class="mono">16/07</td><td class="name">Ana Carolina / IBP</td><td>TERCAN CONSTRUÇÃO E EMPREEND.</td><td class="mono">TRF1</td><td>Celer</td><td class="mono">R$ 3.606.904</td><td class="mono">R$ 1.732.527</td><td class="mono">58,0%</td><td class="mono" style="color:var(--violet)">R$ 1.004.865</td><td class="mono">Breno</td><td><span class="badge badge-prop">Proposta enviada</span></td></tr>
@@ -251,10 +246,10 @@
 <tr class="rec-row"><td class="mono">57</td><td class="mono">—</td><td class="name">Parceiros Prec.</td><td>MARIA ODIVA DA SILVA FRANCA</td><td class="mono">TJMT</td><td>BMAJ</td><td class="mono">R$ 31.020</td><td class="mono">R$ 17.842</td><td class="mono">20,0%</td><td class="mono" style="color:var(--red)">—</td><td class="mono">Marcel</td><td><span class="badge badge-recusada">Recusada</span></td></tr>
 <tr><td class="mono">58</td><td class="mono">23/07</td><td class="name">Dra. Adrielly</td><td>CLEUZA BOTELHO</td><td class="mono">TJMT</td><td>BMAJ</td><td class="mono">R$ 29.948</td><td class="mono">R$ 14.974</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Luís</td><td><span class="badge badge-analise">Em análise</span></td></tr>
 <tr><td class="mono">59</td><td class="mono">23/07</td><td class="name">Dr. Rodrigo / IBP</td><td>GRAZIELA BEZERRA DE OLIVEIRA</td><td class="mono">TJGO</td><td>BTG Pactual</td><td class="mono">R$ 486.677</td><td class="mono">R$ 145.511</td><td class="mono">8,5%</td><td class="mono" style="color:var(--amber)">R$ 12.412</td><td class="mono">Breno</td><td><span class="badge badge-em">Em cotação</span></td></tr>
-<tr class="win-row"><td class="mono">60</td><td class="mono">24/07</td><td class="name">Dr. Carlos Ghiorzi</td><td>LÚCIA HELENA FERREIRA</td><td class="mono">TRF2</td><td>Celer</td><td class="mono">R$ 2.402.718</td><td class="mono">R$ 1.209.597</td><td class="mono">30,6%</td><td class="mono" style="color:var(--amber)">R$ 369.653</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Contrato assinado</span></td></tr>
+<tr class="win-row"><td class="mono">60</td><td class="mono">24/07</td><td class="name">Dr. Carlos Ghiorzi</td><td>LÚCIA HELENA FERREIRA</td><td class="mono">TRF2</td><td>Celer</td><td class="mono">R$ 2.402.718</td><td class="mono">R$ 1.209.597</td><td class="mono">30,6%</td><td class="mono" style="color:var(--amber)">R$ 369.653</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Prev. fechamento</span></td></tr>
 <tr class="new-row"><td class="mono">61</td><td class="mono">28/07</td><td class="name">Dr. Reginaldo ★</td><td>LUIZ ANTONIO DE ALMEIDA</td><td class="mono">TJRN</td><td>—</td><td class="mono">R$ 2.170.585</td><td class="mono">—</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Luís</td><td><span class="badge badge-analise">Em análise</span></td></tr>
 <tr class="new-row"><td class="mono">62</td><td class="mono">28/07</td><td class="name">Dr. Reginaldo ★</td><td>ILMAR SOUZA CHAVES</td><td class="mono">TJRN</td><td>BMAJ</td><td class="mono">R$ 73.391</td><td class="mono">—</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Luís</td><td><span class="badge badge-analise">Em análise</span></td></tr>
-<tr class="new-row destaque-row"><td class="mono">63</td><td class="mono">28/07</td><td class="name">Ana Carolina / IBP ★</td><td>ROSAS ADVOGADOS</td><td class="mono">TJDF</td><td>Celer</td><td class="mono">R$ 57.448.839</td><td class="mono">R$ 41.595.285</td><td class="mono">5,6%</td><td class="mono" style="color:var(--amber);font-weight:700">R$ 2.333.495</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Contrato assinado</span></td></tr>
+<tr class="new-row destaque-row"><td class="mono">63</td><td class="mono">28/07</td><td class="name">Ana Carolina / IBP ★</td><td>ROSAS ADVOGADOS</td><td class="mono">TJDF</td><td>Celer</td><td class="mono">R$ 57.448.839</td><td class="mono">R$ 41.595.285</td><td class="mono">5,6%</td><td class="mono" style="color:var(--amber);font-weight:700">R$ 2.333.495</td><td class="mono">Breno</td><td><span class="badge badge-fechada">⏳ Prev. fechamento</span></td></tr>
 <tr class="new-row"><td class="mono">64</td><td class="mono">28/07</td><td class="name">BMAJ/Juriscop ★</td><td>LUCILENE PEREIRA SIMEONE</td><td class="mono">TJSP</td><td>Parceiro MT</td><td class="mono">R$ 444.346</td><td class="mono">—</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Marcel</td><td><span class="badge badge-em">Em cotação</span></td></tr>
 <tr class="new-row"><td class="mono">65</td><td class="mono">28/07</td><td class="name">Parceiros MT ★</td><td>WALFRIDO FRANKLIM DO NASCIMENTO</td><td class="mono">TJMT</td><td>Parceiro MT</td><td class="mono">R$ 209.959</td><td class="mono">R$ 98.627</td><td class="mono">—</td><td class="mono" style="color:var(--gray)">—</td><td class="mono">Marcel</td><td><span class="badge badge-analise">Em análise</span></td></tr>
       </tbody>
